@@ -1,0 +1,1701 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#6657e8">
+  <meta name="description"
+    content="Ein kinderfreundliches Cheat Sheet für HTML, CSS und JavaScript – mit Beispielen, Mini-Challenges und einem Quiz.">
+  <title>Code-Abenteuer – HTML, CSS & JavaScript</title>
+  <style>
+    :root {
+      --ink: #202345;
+      --muted: #626783;
+      --paper: #fffdf8;
+      --purple: #6657e8;
+      --purple-dark: #4b3bc5;
+      --blue: #2f8fe8;
+      --green: #22a879;
+      --orange: #ffad42;
+      --pink: #ff729e;
+      --line: #e9e7f5;
+      --shadow: 0 12px 32px rgba(49, 43, 104, .09);
+      --radius: 22px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 90px;
+    }
+
+    body {
+      margin: 0;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 5% 8%, rgba(255, 173, 66, .15), transparent 22rem),
+        radial-gradient(circle at 95% 28%, rgba(102, 87, 232, .10), transparent 25rem),
+        var(--paper);
+      font-family: ui-rounded, "Trebuchet MS", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.6;
+    }
+
+    a {
+      color: inherit;
+    }
+
+    button,
+    input {
+      font: inherit;
+    }
+
+    button {
+      cursor: pointer;
+    }
+
+    code,
+    pre {
+      font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+    }
+
+    code {
+      overflow-wrap: anywhere;
+    }
+
+    :focus-visible {
+      outline: 3px solid #ffad42;
+      outline-offset: 3px;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: rgba(255, 253, 248, .9);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(233, 231, 245, .85);
+    }
+
+    .nav {
+      max-width: 1160px;
+      margin: auto;
+      padding: 12px 22px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      font-weight: 900;
+      letter-spacing: -.03em;
+    }
+
+    .brand-mark {
+      width: 40px;
+      height: 40px;
+      display: grid;
+      place-items: center;
+      background: var(--purple);
+      color: white;
+      border-radius: 14px;
+      font-size: 1.35rem;
+      box-shadow: 0 5px 0 var(--purple-dark);
+    }
+
+    .nav-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+    }
+
+    .nav-links a {
+      padding: 8px 12px;
+      border-radius: 999px;
+      text-decoration: none;
+      color: var(--muted);
+      font-size: .9rem;
+      font-weight: 800;
+    }
+
+    .nav-links a:hover {
+      background: #f0edff;
+      color: var(--purple-dark);
+    }
+
+    .hero {
+      max-width: 1160px;
+      margin: auto;
+      padding: 66px 22px 44px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.25fr .75fr;
+      gap: 34px;
+      align-items: center;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 7px 12px;
+      background: #fff0d9;
+      color: #875000;
+      border-radius: 999px;
+      font-size: .82rem;
+      font-weight: 900;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      margin: 18px 0 16px;
+      max-width: 700px;
+      font-size: clamp(2.7rem, 6vw, 5.1rem);
+      line-height: .99;
+      letter-spacing: -.065em;
+    }
+
+    .gradient-text {
+      color: var(--purple);
+    }
+
+    .hero p {
+      max-width: 630px;
+      color: var(--muted);
+      font-size: clamp(1.05rem, 2vw, 1.22rem);
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 25px;
+    }
+
+    .btn {
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      gap: 8px;
+      border: 0;
+      border-radius: 14px;
+      padding: 12px 18px;
+      font-weight: 900;
+      text-decoration: none;
+      transition: transform .15s ease, box-shadow .15s ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+    }
+
+    .btn-primary {
+      color: white;
+      background: var(--purple);
+      box-shadow: 0 5px 0 var(--purple-dark);
+    }
+
+    .btn-light {
+      color: var(--ink);
+      background: white;
+      border: 1px solid var(--line);
+      box-shadow: 0 4px 0 var(--line);
+    }
+
+    .hero-art {
+      position: relative;
+      min-height: 300px;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(145deg, #e8e4ff, #f8eaff 55%, #fff0d9);
+      border: 1px solid white;
+      border-radius: 36px;
+      overflow: hidden;
+    }
+
+    .hero-art::before,
+    .hero-art::after {
+      content: "";
+      position: absolute;
+      border-radius: 50%;
+      border: 2px dashed rgba(102, 87, 232, .2);
+    }
+
+    .hero-art::before {
+      width: 250px;
+      height: 250px;
+    }
+
+    .hero-art::after {
+      width: 190px;
+      height: 190px;
+    }
+
+    .laptop {
+      position: relative;
+      z-index: 1;
+      width: min(75%, 300px);
+      transform: rotate(-4deg);
+      filter: drop-shadow(0 18px 15px rgba(47, 39, 106, .15));
+    }
+
+    .screen {
+      padding: 12px;
+      background: #29284c;
+      border: 5px solid #45436c;
+      border-radius: 18px 18px 9px 9px;
+    }
+
+    .screen-inner {
+      padding: 16px;
+      background: #fff;
+      border-radius: 8px;
+      min-height: 135px;
+    }
+
+    .fake-line {
+      height: 9px;
+      border-radius: 9px;
+      margin: 9px 0;
+      background: #e8e7f5;
+    }
+
+    .fake-line.purple {
+      width: 70%;
+      background: #b3aaff;
+    }
+
+    .fake-line.green {
+      width: 48%;
+      background: #a5e8cf;
+    }
+
+    .fake-line.orange {
+      width: 82%;
+      background: #ffd49a;
+    }
+
+    .laptop-base {
+      height: 13px;
+      margin: 0 -12px;
+      background: #77749c;
+      border-radius: 2px 2px 12px 12px;
+    }
+
+    .float-emoji {
+      position: absolute;
+      z-index: 2;
+      font-size: 2.5rem;
+      animation: bob 3s ease-in-out infinite;
+    }
+
+    .float-emoji.one {
+      top: 22px;
+      right: 25px;
+    }
+
+    .float-emoji.two {
+      bottom: 22px;
+      left: 25px;
+      animation-delay: -.9s;
+    }
+
+    .float-emoji.three {
+      top: 45px;
+      left: 28px;
+      font-size: 1.8rem;
+      animation-delay: -1.7s;
+    }
+
+    @keyframes bob {
+
+      0%,
+      100% {
+        transform: translateY(0) rotate(-5deg);
+      }
+
+      50% {
+        transform: translateY(-10px) rotate(5deg);
+      }
+    }
+
+    main {
+      max-width: 1160px;
+      margin: auto;
+      padding: 0 22px 70px;
+    }
+
+    .section {
+      margin-top: 54px;
+    }
+
+    .section-heading {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 18px;
+      margin-bottom: 22px;
+    }
+
+    .section-heading h2 {
+      margin: 0;
+      font-size: clamp(1.8rem, 4vw, 2.6rem);
+      line-height: 1.1;
+      letter-spacing: -.045em;
+    }
+
+    .section-heading p {
+      max-width: 520px;
+      margin: 8px 0 0;
+      color: var(--muted);
+    }
+
+    .tiny-label {
+      color: var(--purple);
+      font-size: .78rem;
+      font-weight: 900;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+    }
+
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    .team-card {
+      position: relative;
+      overflow: hidden;
+      padding: 24px;
+      background: white;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+
+    .team-card::after {
+      content: "";
+      position: absolute;
+      width: 100px;
+      height: 100px;
+      right: -36px;
+      bottom: -42px;
+      border-radius: 50%;
+      background: var(--wash);
+    }
+
+    .team-card .emoji {
+      font-size: 2.2rem;
+    }
+
+    .team-card h3 {
+      margin: 9px 0 5px;
+      font-size: 1.4rem;
+    }
+
+    .team-card p {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .team-card.html {
+      --wash: #ffead4;
+    }
+
+    .team-card.css {
+      --wash: #e4e1ff;
+    }
+
+    .team-card.js {
+      --wash: #d9f7e9;
+    }
+
+    .toolbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin: 22px 0 16px;
+    }
+
+    .search-wrap {
+      flex: 1 1 230px;
+      position: relative;
+    }
+
+    .search-wrap span {
+      position: absolute;
+      top: 50%;
+      left: 14px;
+      transform: translateY(-50%);
+    }
+
+    .search-wrap input {
+      width: 100%;
+      padding: 12px 14px 12px 42px;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: white;
+      color: var(--ink);
+    }
+
+    .filter-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .filter-btn {
+      border: 1px solid var(--line);
+      background: white;
+      color: var(--muted);
+      border-radius: 999px;
+      padding: 9px 13px;
+      font-weight: 850;
+    }
+
+    .filter-btn[aria-pressed="true"] {
+      color: white;
+      background: var(--purple);
+      border-color: var(--purple);
+    }
+
+    .cheat-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+    }
+
+    .cheat-card {
+      min-width: 0;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: white;
+      box-shadow: var(--shadow);
+    }
+
+    .cheat-card[hidden] {
+      display: none;
+    }
+
+    .card-head {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 18px 20px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .card-icon {
+      width: 44px;
+      height: 44px;
+      flex: 0 0 auto;
+      display: grid;
+      place-items: center;
+      border-radius: 14px;
+      font-size: 1.35rem;
+    }
+
+    .html .card-icon {
+      background: #ffead4;
+    }
+
+    .css .card-icon {
+      background: #e4e1ff;
+    }
+
+    .js .card-icon {
+      background: #d9f7e9;
+    }
+
+    .card-head h3 {
+      margin: 0;
+      font-size: 1.15rem;
+    }
+
+    .card-head p {
+      margin: 2px 0 0;
+      color: var(--muted);
+      font-size: .9rem;
+    }
+
+    .card-body {
+      padding: 18px 20px 20px;
+    }
+
+    .snippet {
+      position: relative;
+      margin: 12px 0;
+    }
+
+    pre {
+      margin: 0;
+      padding: 16px;
+      padding-right: 75px;
+      overflow-x: auto;
+      border-radius: 14px;
+      color: #f7f5ff;
+      background: #252541;
+      font-size: .88rem;
+      line-height: 1.65;
+      tab-size: 2;
+    }
+
+    .copy-btn {
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      padding: 6px 9px;
+      border: 1px solid #575675;
+      border-radius: 8px;
+      color: white;
+      background: #39385a;
+      font-size: .75rem;
+      font-weight: 800;
+    }
+
+    .copy-btn:hover {
+      background: var(--purple);
+    }
+
+    .explain {
+      margin: 10px 0 0;
+      color: var(--muted);
+      font-size: .94rem;
+    }
+
+    .tag {
+      display: inline-block;
+      padding: 4px 9px;
+      margin: 3px 4px 3px 0;
+      border-radius: 8px;
+      background: #f1efff;
+      color: #4b3bc5;
+      font-size: .8rem;
+      font-weight: 850;
+    }
+
+    .table-wrap {
+      overflow-x: auto;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      background: white;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+    }
+
+    th,
+    td {
+      padding: 13px 16px;
+      border-bottom: 1px solid var(--line);
+      vertical-align: top;
+    }
+
+    th {
+      background: #f5f3ff;
+      color: #4b3bc5;
+      font-size: .88rem;
+    }
+
+    tbody tr:last-child td {
+      border-bottom: 0;
+    }
+
+    td:first-child {
+      font-weight: 800;
+      white-space: nowrap;
+    }
+
+    td code {
+      color: #4b3bc5;
+      font-size: .9rem;
+    }
+
+    .challenge-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    .challenge {
+      padding: 22px;
+      border-radius: var(--radius);
+      border: 1px solid var(--line);
+      background: white;
+    }
+
+    .challenge .number {
+      display: grid;
+      place-items: center;
+      width: 38px;
+      height: 38px;
+      border-radius: 12px;
+      color: white;
+      background: var(--purple);
+      font-weight: 950;
+    }
+
+    .challenge h3 {
+      margin: 14px 0 6px;
+    }
+
+    .challenge p {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .challenge small {
+      display: inline-block;
+      margin-top: 13px;
+      padding: 5px 9px;
+      border-radius: 999px;
+      background: #fff0d9;
+      color: #875000;
+      font-weight: 850;
+    }
+
+    .playground {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      padding: 22px;
+      border-radius: 28px;
+      background: #efedff;
+      border: 1px solid #dfdbff;
+    }
+
+    .playground h3 {
+      margin: 0 0 8px;
+      font-size: 1.35rem;
+    }
+
+    .playground p {
+      color: var(--muted);
+    }
+
+    .score-box {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: center;
+      padding: 20px;
+      border-radius: 20px;
+      background: white;
+    }
+
+    .score {
+      margin: 3px 0 12px;
+      color: var(--purple);
+      font-size: clamp(3rem, 7vw, 4.6rem);
+      font-weight: 950;
+      line-height: 1;
+      letter-spacing: -.06em;
+    }
+
+    .score-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 9px;
+    }
+
+    .score-message {
+      min-height: 1.6em;
+      margin: 12px 0 0;
+      font-weight: 800;
+      color: var(--purple-dark);
+    }
+
+    .quiz {
+      padding: 24px;
+      border-radius: 28px;
+      background: #fff4e4;
+      border: 1px solid #ffe3bd;
+    }
+
+    .quiz-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .quiz-top h3 {
+      margin: 0;
+      font-size: 1.4rem;
+    }
+
+    .quiz-count {
+      font-weight: 900;
+      color: #875000;
+    }
+
+    .progress {
+      height: 8px;
+      margin: 16px 0 22px;
+      background: #ffdfb1;
+      border-radius: 999px;
+      overflow: hidden;
+    }
+
+    .progress-bar {
+      height: 100%;
+      width: 0;
+      background: var(--orange);
+      transition: width .25s ease;
+    }
+
+    .question {
+      margin: 0 0 15px;
+      font-size: 1.15rem;
+      font-weight: 900;
+    }
+
+    .answers {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+    }
+
+    .answer-btn {
+      padding: 12px;
+      border: 2px solid white;
+      border-radius: 13px;
+      background: white;
+      text-align: left;
+      font-weight: 800;
+      color: var(--ink);
+    }
+
+    .answer-btn:hover:not(:disabled) {
+      border-color: var(--orange);
+    }
+
+    .answer-btn:disabled {
+      cursor: default;
+    }
+
+    .answer-btn.correct {
+      background: #ddf8eb;
+      border-color: #22a879;
+    }
+
+    .answer-btn.wrong {
+      background: #ffe3e8;
+      border-color: #ff729e;
+    }
+
+    .quiz-feedback {
+      min-height: 1.6em;
+      margin: 14px 0;
+      font-weight: 850;
+    }
+
+    .quiz-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .quiz-score {
+      color: #875000;
+      font-weight: 900;
+    }
+
+    .tip-box {
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+      padding: 20px;
+      border-radius: 18px;
+      background: #e7f8f0;
+      border: 1px solid #c8efdf;
+    }
+
+    .tip-box .tip-icon {
+      font-size: 1.7rem;
+    }
+
+    .tip-box p {
+      margin: 0;
+    }
+
+    footer {
+      padding: 28px 22px;
+      text-align: center;
+      color: var(--muted);
+      border-top: 1px solid var(--line);
+    }
+
+    footer strong {
+      color: var(--purple);
+    }
+
+    @media (max-width: 800px) {
+      .hero-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-art {
+        min-height: 250px;
+      }
+
+      .team-grid,
+      .challenge-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .cheat-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .playground {
+        grid-template-columns: 1fr;
+      }
+
+      .section-heading {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+    }
+
+    @media (max-width: 540px) {
+      .nav {
+        align-items: flex-start;
+        flex-direction: column;
+        padding: 10px 16px;
+        gap: 6px;
+      }
+
+      .nav-links {
+        width: 100%;
+        overflow-x: auto;
+        flex-wrap: nowrap;
+        padding-bottom: 3px;
+      }
+
+      .nav-links a {
+        white-space: nowrap;
+      }
+
+      .hero {
+        padding: 42px 16px 28px;
+      }
+
+      main {
+        padding: 0 16px 48px;
+      }
+
+      .hero-art {
+        min-height: 220px;
+      }
+
+      .team-card,
+      .card-body {
+        padding: 18px;
+      }
+
+      .card-head {
+        padding: 15px 18px;
+      }
+
+      .answers {
+        grid-template-columns: 1fr;
+      }
+
+      .quiz {
+        padding: 18px;
+      }
+
+      th,
+      td {
+        padding: 11px 12px;
+      }
+
+      td:first-child {
+        white-space: normal;
+      }
+
+      pre {
+        font-size: .8rem;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+
+      *,
+      *::before,
+      *::after {
+        scroll-behavior: auto !important;
+        animation: none !important;
+        transition: none !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header class="topbar">
+    <nav class="nav" aria-label="Hauptnavigation">
+      <a class="brand" href="#start" aria-label="Code-Abenteuer – Startseite">
+        <span class="brand-mark" aria-hidden="true">&lt;/&gt;</span>
+        <span>Code-Abenteuer</span>
+      </a>
+      <div class="nav-links">
+        <a href="#grundlagen">Die drei Freunde</a>
+        <a href="#cheatsheet">Cheat Sheet</a>
+        <a href="#challenges">Challenges</a>
+        <a href="#quiz">Quiz</a>
+      </div>
+    </nav>
+  </header>
+
+  <section class="hero" id="start">
+    <div class="hero-grid">
+      <div>
+        <span class="eyebrow">🚀 Dein Coding-Spickzettel</span>
+        <h1>Code deine<br><span class="gradient-text">eigene Welt!</span></h1>
+        <p>HTML, CSS und JavaScript sind ein Super-Team. Hier lernst du die wichtigsten Befehle – mit einfachen
+          Beispielen, kleinen Aufgaben und einem Quiz zum Ausprobieren.</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#cheatsheet">Los geht's! <span aria-hidden="true">→</span></a>
+          <a class="btn btn-light" href="#spiel">🎮 Spiel ausprobieren</a>
+        </div>
+      </div>
+      <div class="hero-art" aria-label="Illustration eines Laptops mit bunten Code-Zeilen" role="img">
+        <span class="float-emoji one" aria-hidden="true">✨</span>
+        <span class="float-emoji two" aria-hidden="true">🎨</span>
+        <span class="float-emoji three" aria-hidden="true">⚡</span>
+        <div class="laptop" aria-hidden="true">
+          <div class="screen">
+            <div class="screen-inner">
+              <div class="fake-line purple"></div>
+              <div class="fake-line"></div>
+              <div class="fake-line green"></div>
+              <div class="fake-line orange"></div>
+              <div class="fake-line" style="width:58%"></div>
+            </div>
+          </div>
+          <div class="laptop-base"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <main>
+    <section class="section" id="grundlagen">
+      <div class="section-heading">
+        <div>
+          <span class="tiny-label">Das Super-Team</span>
+          <h2>Drei Sprachen, ein Abenteuer</h2>
+        </div>
+        <p>Jede Sprache hat eine eigene Aufgabe. Zusammen machen sie aus einer Idee eine coole Webseite!</p>
+      </div>
+      <div class="team-grid">
+        <article class="team-card html">
+          <div class="emoji" aria-hidden="true">🧱</div>
+          <h3>HTML baut</h3>
+          <p>HTML legt fest, was auf deiner Seite steht: Überschriften, Texte, Bilder und Buttons.</p>
+        </article>
+        <article class="team-card css">
+          <div class="emoji" aria-hidden="true">🎨</div>
+          <h3>CSS gestaltet</h3>
+          <p>CSS kümmert sich um Farben, Schriftgrößen, Abstände und das Aussehen deiner Seite.</p>
+        </article>
+        <article class="team-card js">
+          <div class="emoji" aria-hidden="true">⚡</div>
+          <h3>JavaScript zaubert</h3>
+          <p>JavaScript lässt Dinge passieren: Klicks, Punktestände, kleine Spiele und Reaktionen.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="cheatsheet">
+      <div class="section-heading">
+        <div>
+          <span class="tiny-label">Immer griffbereit</span>
+          <h2>Dein Cheat Sheet</h2>
+        </div>
+        <p>Such einen Begriff oder filtere nach HTML, CSS oder JavaScript. Mit „Kopieren“ kannst du Code direkt
+          übernehmen.</p>
+      </div>
+      <div class="toolbar">
+        <label class="search-wrap">
+          <span aria-hidden="true">🔎</span>
+          <input id="searchInput" type="search" placeholder="Zum Beispiel: Farbe, Button, Variable …"
+            aria-label="Cheat Sheet durchsuchen">
+        </label>
+        <div class="filter-buttons" role="group" aria-label="Nach Sprache filtern">
+          <button class="filter-btn" data-filter="all" aria-pressed="true">Alles</button>
+          <button class="filter-btn" data-filter="html" aria-pressed="false">🧱 HTML</button>
+          <button class="filter-btn" data-filter="css" aria-pressed="false">🎨 CSS</button>
+          <button class="filter-btn" data-filter="js" aria-pressed="false">⚡ JavaScript</button>
+        </div>
+      </div>
+
+      <div class="cheat-grid" id="cheatGrid">
+        <article class="cheat-card html" data-category="html"
+          data-search="html grundgerüst doctype html head title body meta viewport">
+          <div class="card-head">
+            <div class="card-icon" aria-hidden="true">🧱</div>
+            <div>
+              <h3>Das HTML-Grundgerüst</h3>
+              <p>Das Zuhause deiner Webseite</p>
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="snippet">
+              <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="de"&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;title&gt;Meine Seite&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;h1&gt;Hallo Welt!&lt;/h1&gt;
+  &lt;p&gt;Meine erste Webseite.&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre><button class="copy-btn" type="button">Kopieren</button>
+            </div>
+            <p class="explain"><strong>Merke:</strong> Im <code>&lt;body&gt;</code> steht der sichtbare Inhalt. Die
+              meisten Tags haben einen Start- und einen End-Tag.</p>
+          </div>
+        </article>
+
+        <article class="cheat-card html" data-category="html"
+          data-search="html überschrift h1 h2 absatz p zeilenumbruch br fett strong kursiv em">
+          <div class="card-head">
+            <div class="card-icon" aria-hidden="true">✍️</div>
+            <div>
+              <h3>Überschriften & Texte</h3>
+              <p>Worte auf die Seite bringen</p>
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="snippet">
+              <pre><code>&lt;h1&gt;Große Überschrift&lt;/h1&gt;
+&lt;h2&gt;Kleinere Überschrift&lt;/h2&gt;
+&lt;p&gt;Ein Absatz mit Text.&lt;/p&gt;
+&lt;strong&gt;Wichtig!&lt;/strong&gt;
+&lt;em&gt;Betont!&lt;/em&gt;
+Zeile eins&lt;br&gt;Zeile zwei</code></pre><button class="copy-btn" type="button">Kopieren</button>
+            </div>
+            <p class="explain"><code>&lt;h1&gt;</code> ist die wichtigste Überschrift. <code>&lt;p&gt;</code> steht für
+              einen Absatz. <code>&lt;br&gt;</code> macht einen Zeilenumbruch.</p>
+          </div>
+        </article>
+
+        <article class="cheat-card html" data-category="html"
+          data-search="html button knopf link a href bild img src alt liste ul ol li">
+          <div class="card-head">
+            <div class="card-icon" aria-hidden="true">🖼️</div>
+            <div>
+              <h3>Buttons, Bilder & Listen</h3>
+              <p>Mehr als nur Text</p>
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="snippet">
+              <pre><code>&lt;button&gt;Klick mich!&lt;/button&gt;
+&lt;a href="https://example.com"&gt;
+  Ein Link
+&lt;/a&gt;
+&lt;img src="katze.jpg"
+     alt="Eine Katze"&gt;
+&lt;ul&gt;
+  &lt;li&gt;Pizza&lt;/li&gt;
+  &lt;li&gt;Pasta&lt;/li&gt;
+&lt;/ul&gt;</code></pre><button class="copy-btn" type="button">Kopieren</button>
+            </div>
+            <p class="explain">Das <code>alt</code>-Attribut beschreibt ein Bild. Listenpunkte stehen in
+              <code>&lt;li&gt;</code>; <code>&lt;ul&gt;</code> erstellt eine Liste mit Aufzählungspunkten.</p>
+          </div>
+        </article>
+
+        <article class="cheat-card css" data-category="css"
+          data-search="css farbe color hintergrund background-color schrift font-size font-family text-align">
+          <div class="card-head">
+            <div class="card-icon" aria-hidden="true">🌈</div>
+            <div>
+              <h3>Farben & Schrift</h3>
+              <p>Mach es zu deinem Style</p>
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="snippet">
+              <pre><code>body {
+  background-color: lightblue;
+  font-family: Arial, sans-serif;
+}
+
+h1 {
+  color: purple;
+  text-align: center;
+}
+
+p {
+  font-size: 20px;
+}</code></pre><button class="copy-btn" type="button">Kopieren</button>
+            </div>
+            <p class="explain">CSS-Regeln folgen dem Muster <code>Eigenschaft: Wert;</code>. Die geschweiften Klammern
+              gruppieren die Regeln für ein Element.</p>
+            <span class="tag">red</span><span class="tag">blue</span><span class="tag">green</span><span
+              class="tag">orange</span><span class="tag">pink</span><span class="tag">purple</span>
+          </div>
+        </article>
+
+        <article class="cheat-card css" data-category="css"
+          data-search="css rahmen border ecken radius abstand margin padding breite width höhe height">
+          <div class="card-head">
+            <div class="card-icon" aria-hidden="true">📐</div>
+            <div>
+              <h3>Abstände & Formen</h3>
+              <p>Alles an seinen Platz</p>
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="snippet">
+              <pre><code>.karte {
+  background-color: white;
+  border: 2px solid blue;
+  border-radius: 15px;
+  margin: 20px;
+  padding: 10px;
+  width: 200px;
+}</code></pre><button class="copy-btn" type="button">Kopieren</button>
+            </div>
+            <p class="explain"><strong>Margin</strong> ist Abstand außen. <strong>Padding</strong> ist Abstand innen.
+              <strong>Border-radius</strong> macht Ecken rund.</p>
+          </div>
+        </article>
+
+        <article class="cheat-card css" data-category="css"
+          data-search="css klasse class punkt selector hover button cursor flexbox responsive media query">
+          <div class="card-head">
+            <div class="card-icon" aria-hidden="true">🪄</div>
+            <div>
+              <h3>Klassen & Buttons</h3>
+              <p>Elemente gezielt stylen</p>
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="snippet">
+              <pre><code>/* HTML: &lt;button class="cool"&gt;Los!&lt;/button&gt; */
+.cool {
+  color: white;
+  background-color: purple;
+  border: none;
+  border-radius: 12px;
+  padding: 12px 18px;
+  cursor: pointer;
+}
+
+.cool:hover {
+  background-color: blue;
+}</code></pre><button class="copy-btn" type="button">Kopieren</button>
+            </div>
+            <p class="explain">Eine Klasse beginnt im CSS mit einem Punkt: <code>.cool</code>. Mit <code>:hover</code>
+              kannst du den Stil ändern, wenn die Maus darüber ist.</p>
+          </div>
+        </article>
+
+        <article class="cheat-card js" data-category="js"
+          data-search="javascript variable let const zahl text string console log alert">
+          <div class="card-head">
+            <div class="card-icon" aria-hidden="true">📦</div>
+            <div>
+              <h3>Variablen & Nachrichten</h3>
+              <p>Informationen speichern</p>
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="snippet">
+              <pre><code>let punkte = 0;
+const lieblingstier = "Katze";
+
+punkte = punkte + 1;
+
+console.log(punkte);
+alert("Hallo, Welt!");</code></pre><button class="copy-btn" type="button">Kopieren</button>
+            </div>
+            <p class="explain"><code>let</code> erstellt eine veränderbare Variable. <code>const</code> verhindert eine
+              neue Zuweisung. Texte stehen in Anführungszeichen, Zahlen nicht.</p>
+          </div>
+        </article>
+
+        <article class="cheat-card js" data-category="js"
+          data-search="javascript bedingung if else größer kleiner gleich vergleich">
+          <div class="card-head">
+            <div class="card-icon" aria-hidden="true">🤔</div>
+            <div>
+              <h3>Bedingungen: Wenn … dann …</h3>
+              <p>Der Computer entscheidet</p>
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="snippet">
+              <pre><code>let punkte = 12;
+
+if (punkte >= 10) {
+  console.log("Gewonnen!");
+} else {
+  console.log("Weiter üben!");
+}</code></pre><button class="copy-btn" type="button">Kopieren</button>
+            </div>
+            <p class="explain"><code>if</code> prüft, ob etwas stimmt. Falls nicht, kann <code>else</code> einen anderen
+              Weg ausführen.</p>
+            <span class="tag">=== gleich</span><span class="tag">!== ungleich</span><span class="tag">&gt;
+              größer</span><span class="tag">&lt; kleiner</span><span class="tag">&gt;= mindestens</span>
+          </div>
+        </article>
+
+        <article class="cheat-card js" data-category="js"
+          data-search="javascript funktion function aufrufen wiederverwenden parameter">
+          <div class="card-head">
+            <div class="card-icon" aria-hidden="true">🔧</div>
+            <div>
+              <h3>Funktionen</h3>
+              <p>Deine eigenen Befehle</p>
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="snippet">
+              <pre><code>function sagHallo() {
+  alert("Toll gemacht!");
+}
+
+// Funktion starten:
+sagHallo();</code></pre><button class="copy-btn" type="button">Kopieren</button>
+            </div>
+            <p class="explain">Eine Funktion bündelt Befehle, die du wiederverwenden kannst. Mit ihrem Namen und runden
+              Klammern rufst du sie auf.</p>
+          </div>
+        </article>
+
+        <article class="cheat-card js" data-category="js"
+          data-search="javascript button onclick klick element id textContent document getElementById">
+          <div class="card-head">
+            <div class="card-icon" aria-hidden="true">🖱️</div>
+            <div>
+              <h3>Klicks & Webseiten ändern</h3>
+              <p>Mach die Seite interaktiv</p>
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="snippet">
+              <pre><code>&lt;p id="ausgabe"&gt;Hallo!&lt;/p&gt;
+&lt;button onclick="wechseln()"&gt;
+  Klick mich
+&lt;/button&gt;
+
+&lt;script&gt;
+function wechseln() {
+  document.getElementById("ausgabe")
+    .textContent = "Du hast geklickt!";
+}
+&lt;/script&gt;</code></pre><button class="copy-btn" type="button">Kopieren</button>
+            </div>
+            <p class="explain"><code>onclick</code> startet etwas beim Klicken. <code>getElementById</code> findet ein
+              Element anhand seiner ID. <code>textContent</code> ändert seinen Text.</p>
+          </div>
+        </article>
+      </div>
+      <p id="noResults" hidden role="status">Keine Treffer gefunden. Versuch einen anderen Suchbegriff. 🔎</p>
+    </section>
+
+    <section class="section" id="merkhilfe">
+      <div class="section-heading">
+        <div><span class="tiny-label">Schnell nachschauen</span>
+          <h2>Der Mini-Spickzettel</h2>
+        </div>
+        <p>Die wichtigsten Fragen und die passenden Befehle auf einen Blick.</p>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Ich möchte …</th>
+              <th>Das hilft mir</th>
+              <th>Sprache</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Eine Überschrift erstellen</td>
+              <td><code>&lt;h1&gt;Hallo!&lt;/h1&gt;</code></td>
+              <td>HTML</td>
+            </tr>
+            <tr>
+              <td>Einen Absatz schreiben</td>
+              <td><code>&lt;p&gt;Mein Text&lt;/p&gt;</code></td>
+              <td>HTML</td>
+            </tr>
+            <tr>
+              <td>Text blau färben</td>
+              <td><code>color: blue;</code></td>
+              <td>CSS</td>
+            </tr>
+            <tr>
+              <td>Hintergrund färben</td>
+              <td><code>background-color: yellow;</code></td>
+              <td>CSS</td>
+            </tr>
+            <tr>
+              <td>Eine Zahl speichern</td>
+              <td><code>let punkte = 0;</code></td>
+              <td>JavaScript</td>
+            </tr>
+            <tr>
+              <td>Eine Zahl erhöhen</td>
+              <td><code>punkte = punkte + 1;</code></td>
+              <td>JavaScript</td>
+            </tr>
+            <tr>
+              <td>Eine Bedingung prüfen</td>
+              <td><code>if (punkte &gt; 5) { ... }</code></td>
+              <td>JavaScript</td>
+            </tr>
+            <tr>
+              <td>Einen Befehl wiederverwenden</td>
+              <td><code>function starten() { ... }</code></td>
+              <td>JavaScript</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="section" id="challenges">
+      <div class="section-heading">
+        <div><span class="tiny-label">Zeit zum Ausprobieren</span>
+          <h2>Drei Mini-Challenges 🏆</h2>
+        </div>
+        <p>Du lernst am besten, indem du selbst Dinge veränderst. Trau dich!</p>
+      </div>
+      <div class="challenge-grid">
+        <article class="challenge">
+          <div class="number">1</div>
+          <h3>Tier-Fanpage 🐱</h3>
+          <p>Erstelle eine Seite über dein Lieblingstier. Nutze eine Überschrift, einen Absatz, eine Liste und ein Bild.
+          </p><small>HTML · 5 Minuten</small>
+        </article>
+        <article class="challenge">
+          <div class="number">2</div>
+          <h3>Regenbogen-Design 🌈</h3>
+          <p>Färbe die Überschrift lila, den Hintergrund hellblau und gib deinem Button runde Ecken.</p><small>CSS · 5
+            Minuten</small>
+        </article>
+        <article class="challenge">
+          <div class="number">3</div>
+          <h3>Punkte-Profi ⭐</h3>
+          <p>Ändere das Punkte-Spiel so, dass jeder Klick 5 Punkte gibt. Schaffst du 50 Punkte?</p><small>JavaScript · 5
+            Minuten</small>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="spiel">
+      <div class="section-heading">
+        <div><span class="tiny-label">Live ausprobieren</span>
+          <h2>Das Punkte-Spiel 🎮</h2>
+        </div>
+        <p>Jeder Klick bringt dich näher ans Ziel. So kann JavaScript eine Webseite verändern!</p>
+      </div>
+      <div class="playground">
+        <div>
+          <h3>Sammle 10 Sterne!</h3>
+          <p>Drücke auf den Button, um Sterne zu sammeln. Wenn du 10 erreichst, bist du ein Punkte-Profi.</p>
+          <div class="tip-box"><span class="tip-icon" aria-hidden="true">💡</span>
+            <p><strong>Code-Idee:</strong> Eine Variable speichert deine Punkte. Bei jedem Klick wird sie um 1 erhöht
+              und auf der Seite angezeigt.</p>
+          </div>
+        </div>
+        <div class="score-box">
+          <span class="tiny-label">Dein Punktestand</span>
+          <div class="score" aria-live="polite"><span id="score">0</span> ⭐</div>
+          <div class="score-actions">
+            <button class="btn btn-primary" id="addPoint" type="button">+1 Stern</button>
+            <button class="btn btn-light" id="resetScore" type="button">Neu starten ↻</button>
+          </div>
+          <p class="score-message" id="scoreMessage" role="status">Bereit? Los geht's!</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="quiz">
+      <div class="section-heading">
+        <div><span class="tiny-label">Bist du bereit?</span>
+          <h2>Das Coding-Quiz 🧠</h2>
+        </div>
+        <p>Beantworte fünf Fragen und teste, was du schon gelernt hast.</p>
+      </div>
+      <div class="quiz">
+        <div class="quiz-top">
+          <h3 id="quizTitle">Frage 1</h3><span class="quiz-count" id="quizCount">1 von 5</span>
+        </div>
+        <div class="progress" aria-hidden="true">
+          <div class="progress-bar" id="progressBar"></div>
+        </div>
+        <p class="question" id="questionText">Welche Sprache bestimmt, was auf der Webseite steht?</p>
+        <div class="answers" id="answers">
+          <button class="answer-btn" type="button" data-answer="0">CSS</button>
+          <button class="answer-btn" type="button" data-answer="1">HTML</button>
+          <button class="answer-btn" type="button" data-answer="2">JavaScript</button>
+        </div>
+        <p class="quiz-feedback" id="quizFeedback" aria-live="polite"></p>
+        <div class="quiz-footer">
+          <span class="quiz-score" id="quizScore">Punkte: 0</span>
+          <button class="btn btn-primary" id="nextQuestion" type="button" disabled>Weiter →</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="tip-box">
+        <span class="tip-icon" aria-hidden="true">🌟</span>
+        <p><strong>Die goldene Regel:</strong> HTML baut. CSS gestaltet. JavaScript zaubert Bewegung hinein.<br>Fehler
+          sind normal – jede Programmier-Profi-Person hat mal klein angefangen. Probiere etwas aus, ändere eine Sache
+          und schau, was passiert!</p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>Gemacht für neugierige Köpfe von 8 bis 12 Jahren 💜</p>
+    <p><strong>Code-Abenteuer</strong> · Lernen, ausprobieren, Spaß haben.</p>
+  </footer>
+
+  <script>
+    // Cheat Sheet: Suche und Sprachfilter
+    const searchInput = document.getElementById("searchInput");
+    const filterButtons = document.querySelectorAll(".filter-btn");
+    const cheatCards = document.querySelectorAll(".cheat-card");
+    const noResults = document.getElementById("noResults");
+    let activeFilter = "all";
+
+    function filterCheats() {
+      const query = searchInput.value.trim().toLocaleLowerCase("de");
+      let visibleCount = 0;
+
+      cheatCards.forEach((card) => {
+        const categoryMatches = activeFilter === "all" || card.dataset.category === activeFilter;
+        const searchText = (card.dataset.search + " " + card.textContent).toLocaleLowerCase("de");
+        const searchMatches = !query || searchText.includes(query);
+        const visible = categoryMatches && searchMatches;
+        card.hidden = !visible;
+        if (visible) visibleCount++;
+      });
+
+      noResults.hidden = visibleCount !== 0;
+    }
+
+    searchInput.addEventListener("input", filterCheats);
+    filterButtons.forEach((button) => {
+      button.addEventListener("click", () => {
+        activeFilter = button.dataset.filter;
+        filterButtons.forEach((item) => item.setAttribute("aria-pressed", String(item === button)));
+        filterCheats();
+      });
+    });
+
+    // Code kopieren. Fallback für Browser ohne Clipboard-API.
+    document.querySelectorAll(".copy-btn").forEach((button) => {
+      button.addEventListener("click", async () => {
+        const code = button.parentElement.querySelector("code").innerText;
+        const originalText = button.textContent;
+        try {
+          if (navigator.clipboard && window.isSecureContext) {
+            await navigator.clipboard.writeText(code);
+          } else {
+            const helper = document.createElement("textarea");
+            helper.value = code;
+            helper.style.position = "fixed";
+            helper.style.opacity = "0";
+            document.body.appendChild(helper);
+            helper.select();
+            const copied = document.execCommand("copy");
+            helper.remove();
+            if (!copied) throw new Error("Kopieren nicht verfügbar");
+          }
+          button.textContent = "Kopiert ✓";
+        } catch {
+          button.textContent = "Nicht möglich";
+        }
+        window.setTimeout(() => {button.textContent = originalText;}, 1500);
+      });
+    });
+
+    // Interaktives Punkte-Spiel
+    let score = 0;
+    const scoreOutput = document.getElementById("score");
+    const scoreMessage = document.getElementById("scoreMessage");
+
+    document.getElementById("addPoint").addEventListener("click", () => {
+      score += 1;
+      scoreOutput.textContent = score;
+      if (score >= 10) {
+        scoreMessage.textContent = "🎉 Geschafft! Du bist ein Punkte-Profi!";
+      } else if (score >= 5) {
+        scoreMessage.textContent = "🚀 Stark! Nur noch " + (10 - score) + " Sterne!";
+      } else {
+        scoreMessage.textContent = "Super! Weiter sammeln! ⭐";
+      }
+    });
+
+    document.getElementById("resetScore").addEventListener("click", () => {
+      score = 0;
+      scoreOutput.textContent = score;
+      scoreMessage.textContent = "Bereit? Los geht's!";
+    });
+
+    // Kleines Quiz
+    const quizQuestions = [
+      {
+        question: "Welche Sprache bestimmt, was auf der Webseite steht?",
+        answers: ["CSS", "HTML", "JavaScript"],
+        correct: 1,
+        explanation: "Richtig! HTML ist das Grundgerüst der Webseite."
+      },
+      {
+        question: "Welche Sprache macht den Hintergrund bunt?",
+        answers: ["CSS", "HTML", "JavaScript"],
+        correct: 0,
+        explanation: "Genau! Mit CSS gestaltest du Farben und Aussehen."
+      },
+      {
+        question: "Was speichert „let punkte = 0“?",
+        answers: ["Ein Bild", "Eine Variable", "Einen Button"],
+        correct: 1,
+        explanation: "Richtig! Die Variable „punkte“ speichert die Zahl 0."
+      },
+      {
+        question: "Was bedeutet „if“ in JavaScript?",
+        answers: ["Eine Bedingung prüfen", "Text färben", "Ein Bild zeigen"],
+        correct: 0,
+        explanation: "Super! „if“ lässt Code nur laufen, wenn eine Bedingung stimmt."
+      },
+      {
+        question: "Was passiert bei onclick?",
+        answers: ["Beim Laden wird alles gelöscht", "Die Schrift wird immer größer", "Beim Klicken wird etwas ausgelöst"],
+        correct: 2,
+        explanation: "Genau! onclick kann beim Klicken eine Aktion starten."
+      }
+    ];
+
+    let questionIndex = 0;
+    let quizPoints = 0;
+    let answered = false;
+    const questionText = document.getElementById("questionText");
+    const answersBox = document.getElementById("answers");
+    const quizTitle = document.getElementById("quizTitle");
+    const quizCount = document.getElementById("quizCount");
+    const quizFeedback = document.getElementById("quizFeedback");
+    const quizScore = document.getElementById("quizScore");
+    const nextQuestion = document.getElementById("nextQuestion");
+    const progressBar = document.getElementById("progressBar");
+
+    function renderQuestion() {
+      const current = quizQuestions[questionIndex];
+      answered = false;
+      quizTitle.textContent = "Frage " + (questionIndex + 1);
+      quizCount.textContent = (questionIndex + 1) + " von " + quizQuestions.length;
+      questionText.textContent = current.question;
+      quizFeedback.textContent = "";
+      nextQuestion.disabled = true;
+      nextQuestion.textContent = questionIndex === quizQuestions.length - 1 ? "Ergebnis ansehen →" : "Weiter →";
+      progressBar.style.width = (questionIndex / quizQuestions.length * 100) + "%";
+      answersBox.replaceChildren();
+
+      current.answers.forEach((answer, index) => {
+        const button = document.createElement("button");
+        button.type = "button";
+        button.className = "answer-btn";
+        button.textContent = answer;
+        button.addEventListener("click", () => chooseAnswer(index, button));
+        answersBox.appendChild(button);
+      });
+    }
+
+    function chooseAnswer(answerIndex, chosenButton) {
+      if (answered) return;
+      answered = true;
+      const current = quizQuestions[questionIndex];
+      const buttons = answersBox.querySelectorAll(".answer-btn");
+      buttons.forEach((button, index) => {
+        button.disabled = true;
+        if (index === current.correct) button.classList.add("correct");
+      });
+
+      if (answerIndex === current.correct) {
+        quizPoints++;
+        quizFeedback.textContent = "🎉 Richtig! " + current.explanation;
+      } else {
+        chosenButton.classList.add("wrong");
+        quizFeedback.textContent = "Fast! " + current.explanation;
+      }
+      quizScore.textContent = "Punkte: " + quizPoints;
+      nextQuestion.disabled = false;
+      progressBar.style.width = ((questionIndex + 1) / quizQuestions.length * 100) + "%";
+    }
+
+    nextQuestion.addEventListener("click", () => {
+      if (!answered) return;
+      if (questionIndex < quizQuestions.length - 1) {
+        questionIndex++;
+        renderQuestion();
+      } else {
+        showQuizResult();
+      }
+    });
+
+    function showQuizResult() {
+      quizTitle.textContent = "Geschafft! 🎉";
+      quizCount.textContent = "Quiz beendet";
+      questionText.textContent = quizPoints + " von " + quizQuestions.length + " Punkten";
+      answersBox.replaceChildren();
+      const message = document.createElement("p");
+      message.className = "question";
+      message.textContent = quizPoints === 5
+        ? "Wahnsinn! Du bist ein echter Code-Profi!"
+        : quizPoints >= 3
+          ? "Sehr gut! Mit etwas Übung knackst du alle Fragen."
+          : "Gut gemacht! Schau dir das Cheat Sheet noch einmal an und versuch es erneut.";
+      answersBox.appendChild(message);
+      quizFeedback.textContent = "Du kannst das Quiz gleich noch einmal spielen.";
+      nextQuestion.disabled = false;
+      nextQuestion.textContent = "Nochmal spielen ↻";
+      nextQuestion.onclick = () => {
+        questionIndex = 0;
+        quizPoints = 0;
+        quizScore.textContent = "Punkte: 0";
+        nextQuestion.onclick = null;
+        renderQuestion();
+      };
+      progressBar.style.width = "100%";
+    }
+
+    renderQuestion();
+  </script>
+</body>
+
+</html>
